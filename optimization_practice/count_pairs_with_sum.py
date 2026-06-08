@@ -91,3 +91,37 @@ the overall algorithm runs in O(n).
 =================================================
 
 """
+
+nums = []
+n = int(input("enter the total n.o of elements: "))
+for i in range(n):
+    x = int(input("enter the elements in the list: "))
+    nums.append(x)
+
+target = int(input("enter the target element: "))
+# Brute-force O(n^2) version
+def count_pairs_brute(nums,target):
+    count = 0
+    for i in range(0, len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                count += 1
+    return count
+    
+
+# Optimized O(n) version using set
+def count_pairs_fast(nums,target):
+    freq = {}
+    count = 0
+    for x in nums:
+        complement = target - x
+        if complement in freq:       
+             count += freq[complement]
+                    
+        freq[x] = freq.get(x, 0) + 1
+    return count
+
+print(f"Brute-force result:{count_pairs_brute(nums,target)}")
+print(f"Fast result:{count_pairs_fast(nums,target)}")            
+                
+        

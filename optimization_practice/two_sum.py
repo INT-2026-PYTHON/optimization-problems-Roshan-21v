@@ -87,3 +87,36 @@ O(1) time, giving an overall O(n) algorithm.
 =================================================
 
 """
+
+nums = []
+n = int(input("Enter the total number of elements: "))
+for i in range(n):
+    x = int(input("Enter an element in the list: "))
+    nums.append(x)
+
+
+target = int(input("enter the target element: "))
+
+def two_sum_brute(nums, target):
+    for i in range(0, len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+             
+             return (i,j)
+
+def two_sum_fast(nums, target):
+    
+    dict = {}
+
+    for i in range(len(nums)):
+        
+        complement = target - nums[i]
+
+        if complement in dict:
+            return (dict[complement], i)
+
+        dict[nums[i]] = i
+
+
+print(f"Brute Force:{two_sum_brute(nums, target)}")
+print(f"Optimized: {two_sum_fast(nums, target)}")

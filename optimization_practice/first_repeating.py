@@ -83,3 +83,33 @@ element, giving an overall O(n) algorithm.
 =================================================
 
 """
+nums = []
+n = int(input("Enter the total number of elements: "))
+for i in range(n):
+    x = int(input("Enter an element in the list: "))
+    nums.append(x)
+
+# Brute-force O(n^2) version
+def has_duplicate_brute(nums):
+    for i in range(0,len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] == nums[j]:
+                return nums[j]   # first repeat found
+            else:
+                continue
+    return -1   # no repeat found
+
+
+# Optimized O(n) version using set
+def has_duplicate_fast(nums):
+    seen = set()
+    for i in nums:
+        if i in seen:
+            return i   # repeat found
+        else:
+            seen.add(i)
+    return -1   # no repeat found
+
+
+print(f"Brute-force result: {has_duplicate_brute(nums)}")
+print(f"Fast result: {has_duplicate_fast(nums)}")
