@@ -79,3 +79,30 @@ overall O(n) algorithm.
 =================================================
 
 """
+nums = []
+n = int(input("Enter the total number of elements: "))
+for i in range(n):
+    x = int(input("Enter an element in the list: "))
+    nums.append(x)
+
+k = int(input("enter a positive integer: "))
+
+def has_pair_brute(nums, k):
+    for i in range(0,len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] - nums[j] == k:
+                return True   # first repeat found
+            else:
+                continue
+    return False
+
+def has_pair_fast(nums, k):
+    num_set = set(nums)   # store all numbers 
+    for x in nums:
+        if (x + k) in num_set or (x - k) in num_set:
+            return True
+    return False
+
+print(f"Brute-force result:{has_pair_brute(nums,k)}")
+print(f"Fast result:{has_pair_fast(nums,k)}")            
+                
